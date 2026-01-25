@@ -1,0 +1,4 @@
+{
+  "name": "game-portal-playwright-tests",
+  "packageManager": "yarn@4.10.3"
+}
