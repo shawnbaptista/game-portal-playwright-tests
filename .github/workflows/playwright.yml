@@ -21,10 +21,6 @@ jobs:
         run: |
           corepack enable
           corepack prepare yarn@4.10.3 --activate
-          which corepack yarn
-          corepack yarn --version
-          which yarn
-          yarn --version
 
       - name: Install dependencies
         run: yarn install --immutable
