@@ -51,7 +51,7 @@ yarn create playwright
   - added `typescript typescript-eslint` as per (https://typescript-eslint.io/getting-started)
   - updated `.husky/_/pre-commit` to include the `package.json` script for linting
 - updated the automatically created `.github/workflows/playwright.yml` file to use yarn and corepack (prevents having to install yarn) (https://github.com/nodejs/corepack)
--
+- set up the husky `pre-push` to run the playwright tests tagged as '@smoke' 
 
 ### Scratch Notes
 
