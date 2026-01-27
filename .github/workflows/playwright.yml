@@ -19,9 +19,11 @@ jobs:
           cache: yarn
 
       - name: Enable Corepack, activate Yarn, and troubleshoot output
-        run: | 
+        run: |
           corepack enable
           corepack prepare yarn@4.10.3 --activate
+          which corepack yarn
+          corepack yarn --version
           which yarn
           yarn --version
 
