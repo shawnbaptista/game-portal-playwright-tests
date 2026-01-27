@@ -40,8 +40,8 @@ yarn create playwright
   - `yarn exec prettier . --write` -- format all files (add this to pre-commit... should add this as a script (DONE!))
     - `yarn run format` -- script added to `package.json`
     - `yarn run format:write` -- script added to `package.json`
-- husky as git hook manager: https://typicode.github.io/husky/how-to.html 
-    - `yarn prepare` -- script added to `package.json` for setting up husky
+- husky as git hook manager: https://typicode.github.io/husky/how-to.html
+  - `yarn prepare` -- script added to `package.json` for setting up husky
 
 ### Scratch Notes
 
@@ -63,12 +63,12 @@ DEFECT: "Rules" link goes to invalid page, redirects to a link that doesn't exis
 - Found that the game is loaded via `game/checkers/default.js` -- found in Dev Tools `Source` -> `Page`
   _ Source code says "red" is the player, yet the UI shows "orange" -- also in the messages
   _ Source code says "black" is the computer, yet the UI shows "black" as the actual black squares that cannot be touched/landed on
-  _ With the images (.gif files), they are labelled as "you_", "me*", or "black.gif" -- set the variables in the test repo as "player" vs. "computer" especially when the source code commented vars say:
-  * var black = -1; // computer is black
-  _ var red = 1; // visitor is red
-  _ Global variables used in the `default.js` game logic -- risk as they can be overridden  
-  DEFECT?: Clicking while opponent is moving raises "Please wait" message
-  DEFECT: Locked -- "In almost all variants, a player with no valid move remaining loses. This occurs if the player has no pieces left, or if all the player's pieces are obstructed from moving by opponent pieces" -- game SHOULD end here, but does not
+  _ With the images (.gif files), they are labelled as "you_", "me\*", or "black.gif" -- set the variables in the test repo as "player" vs. "computer" especially when the source code commented vars say:
+  - var black = -1; // computer is black
+    _ var red = 1; // visitor is red
+    _ Global variables used in the `default.js` game logic -- risk as they can be overridden  
+    DEFECT?: Clicking while opponent is moving raises "Please wait" message
+    DEFECT: Locked -- "In almost all variants, a player with no valid move remaining loses. This occurs if the player has no pieces left, or if all the player's pieces are obstructed from moving by opponent pieces" -- game SHOULD end here, but does not
 
 ￼
 Invariants
