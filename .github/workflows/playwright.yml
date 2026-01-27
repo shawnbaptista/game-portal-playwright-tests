@@ -18,11 +18,12 @@ jobs:
           node-version: lts/*
           cache: yarn
 
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Activate Yarn via packageManager
-        run: corepack prepare yarn@4.10.3 --activate
+      - name: Enable Corepack, activate Yarn, and troubleshoot output
+        run: | 
+          corepack enable
+          corepack prepare yarn@4.10.3 --activate
+          which yarn
+          yarn --version
 
       - name: Install dependencies
         run: yarn install --immutable
