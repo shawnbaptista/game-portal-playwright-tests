@@ -16,8 +16,8 @@ test.describe("Checkers gameplay", () => {
   test("DEV - Automated game", { tag: "@dev" }, async () => {
     let pieceCount: number = 24;
     for (let index = 0; index < 20; index++) {
-      let boardState = await checkersPage.board.getBoardState();
-      let boardSummary = checkersPage.board.getBoardSummary(boardState);
+      const boardState = await checkersPage.board.getBoardState();
+      const boardSummary = checkersPage.board.getBoardSummary(boardState);
       if (boardSummary.playerPieceCount < pieceCount) {
         console.log("Piece was captured!");
         pieceCount = boardSummary.playerPieceCount;
@@ -49,7 +49,7 @@ test.describe("Checkers gameplay", () => {
       await checkersPage.board.clickOnSquareByCoordinates(endingPosition);
 
       // THEN: The starting square should be empty
-      let startingSquare =
+      const startingSquare =
         await checkersPage.board.getSquareStateByCoordinates(startingPosition);
       expect(startingSquare).toMatchObject({
         valid: true,
@@ -58,7 +58,7 @@ test.describe("Checkers gameplay", () => {
       });
 
       //   AND: The ending square should have the moved piece
-      let endingSquare =
+      const endingSquare =
         await checkersPage.board.getSquareStateByCoordinates(endingPosition);
       expect(endingSquare).toMatchObject({
         valid: true,
@@ -67,7 +67,7 @@ test.describe("Checkers gameplay", () => {
       });
 
       // DEBUG
-      let boardState = await checkersPage.board.getBoardState();
+      const boardState = await checkersPage.board.getBoardState();
       checkersPage.board.getBoardSummary(boardState);
     },
   );

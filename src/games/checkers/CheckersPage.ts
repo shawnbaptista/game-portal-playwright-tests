@@ -53,18 +53,10 @@ export class CheckersPage {
     await this.page.goto("game/checkers/");
   }
 
-  // bottom right corner is 0, 0
-  // Invalid
-  // Even rows have even valid spaces; odd rows have odd valid spaces; e.g. 0,0 -> 0, 2; 1,1 -> 1,3
 }
 
 class CheckersBoard {
   private readonly board: Locator;
-  // SquareState data structure... does the square have a piece? Is the piece the computer's or the user's? Is the piece a 'man' or a 'king'? Is the square
-  // Piece data structure: Man or King? User or Computer?
-  // computerPieces: number;
-  // userPieces: number;
-  // validMovesForUser: number;
 
   constructor(private readonly page: Page) {
     this.board = this.page.locator("#board");
@@ -87,7 +79,7 @@ class CheckersBoard {
       const imgs = row.locator("img");
       for (let column_index = 7; column_index >= 0; column_index--) {
         const img = imgs.nth(column_index);
-        let squareState: SquareState = await this.parseSquareByImgLocator(img);
+        const squareState: SquareState = await this.parseSquareByImgLocator(img);
         boardState.push(squareState);
       }
     }
@@ -132,8 +124,8 @@ class CheckersBoard {
     if (imgName === null) {
       throw new Error('Every square should have an img "src" attribute.');
     }
-    let rawCoordinates = imgName.split("space")[1];
-    let coordinates: Coordinates = new Coordinates(
+    const rawCoordinates = imgName.split("space")[1];
+    const coordinates: Coordinates = new Coordinates(
       Number(rawCoordinates[0]),
       Number(rawCoordinates[1]),
     );
@@ -233,19 +225,19 @@ class CheckersBoard {
   }
 
   private findLegalMove(boardState: BoardState): LegalMove {
-    let boardSummary = this.getBoardSummary(boardState);
+    const boardSummary = this.getBoardSummary(boardState);
 
     // Select a piece and calculate which legal moves can be executed
-    let emptyValidSquares = boardSummary.emptyValidSquares;
-    let userPieces = boardSummary.userPieces;
+    const emptyValidSquares = boardSummary.emptyValidSquares;
+    const userPieces = boardSummary.userPieces;
 
     // Iterate through the empty valid squares until there is a player piece that can land on it, then move that piece
     for (let s = 0; s < emptyValidSquares.length; s++) {
-      let validSquare = emptyValidSquares[s];
-      let validSquareCoordinates = validSquare.coordinates;
+      const validSquare = emptyValidSquares[s];
+      const validSquareCoordinates = validSquare.coordinates;
       for (let p = 0; p < userPieces.length; p++) {
-        let userPiece = userPieces[p];
-        let userPieceCoordinates = userPiece.coordinates;
+        const userPiece = userPieces[p];
+        const userPieceCoordinates = userPiece.coordinates;
         // Must be one column less; one row less than the position of the empty square
         if (
           userPieceCoordinates.y == validSquareCoordinates.y - 1 &&

@@ -42,6 +42,17 @@ yarn create playwright
     - `yarn run format:write` -- script added to `package.json`
 - husky as git hook manager: https://typicode.github.io/husky/how-to.html
   - `yarn prepare` -- script added to `package.json` for setting up husky
+  - updated `.husky/_/pre-commit` to run scripts found in `package.json` automatically on commit
+- eslint as linter: https://eslint.org/docs/latest/use/core-concepts/ 
+    - added `@eslint/js` as recommended by eslint (https://eslint.org/docs/latest/rules/)
+    - added `eslint.config.js` as per configuration steps (https://eslint.org/docs/latest/use/configure/)
+        - `.yarn` files and others that shouldn't be linted were being checked -- added them to an ignore list
+        - linter blew up on .ts files, adding in `typescript-eslint` as fix
+    - added `typescript typescript-eslint` as per (https://typescript-eslint.io/getting-started)
+    - updated `.husky/_/pre-commit` to include the `package.json` script for linting
+- updated the automatically created `.github/workflows/playwright.yml` file to use yarn and corepack (prevents having to install yarn) (https://github.com/nodejs/corepack)
+- 
+
 
 ### Scratch Notes
 
