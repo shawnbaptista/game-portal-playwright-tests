@@ -52,7 +52,6 @@ export class CheckersPage {
   async goto() {
     await this.page.goto("game/checkers/");
   }
-
 }
 
 class CheckersBoard {
@@ -79,7 +78,8 @@ class CheckersBoard {
       const imgs = row.locator("img");
       for (let column_index = 7; column_index >= 0; column_index--) {
         const img = imgs.nth(column_index);
-        const squareState: SquareState = await this.parseSquareByImgLocator(img);
+        const squareState: SquareState =
+          await this.parseSquareByImgLocator(img);
         boardState.push(squareState);
       }
     }
