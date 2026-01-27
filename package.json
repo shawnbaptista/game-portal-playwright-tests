@@ -4,9 +4,14 @@
   "devDependencies": {
     "@playwright/test": "^1.58.0",
     "@types/node": "^25.0.10",
+    "husky": "^9.1.7",
+    "prettier": "3.8.1",
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "format": "prettier . --check",
+    "format:write": "prettier . --write",
+    "prepare": "husky"
   }
 }
