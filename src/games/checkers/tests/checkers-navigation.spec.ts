@@ -75,10 +75,10 @@ test.describe("Checkers landing page functionality", () => {
     },
   );
 
-  test("User can see other games", async () => {
+  test("User can see other games", async ({ page }) => {
     const count = await checkersPage.navigationLinks.count();
     expect(count).toBeGreaterThan(10);
-    const counterfeitGameLink = checkersPage.getByRole("link", {
+    const counterfeitGameLink = page.getByRole("link", {
       name: "Counterfeit",
     });
 
