@@ -1,0 +1,1 @@
+yarn playwright test --grep '@smoke'
