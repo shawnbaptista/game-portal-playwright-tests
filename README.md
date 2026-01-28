@@ -1,3 +1,19 @@
+<p align="center">
+  
+  <!-- Husky -->
+  <img src="https://img.shields.io/badge/git%20hook%20manager-husky-2A6DB2?style=for-the-badge&logo=husky&logoColor=white" alt="Husky">
+  
+  <!-- Prettier -->
+  <img src="https://img.shields.io/badge/code%20style-prettier-000000?style=for-the-badge&logo=prettier&logoColor=white" alt="Prettier">
+
+  <!-- ESLint -->
+  <img src="https://img.shields.io/badge/linting-ESLint-FCC21B?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint">
+
+  <!-- Playwright -->
+  <img src="https://img.shields.io/badge/tests-playwright-0A9EDC?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright">
+
+</p>
+
 # game-portal-playwright-tests
 
 ## UI Testing for "Games for Brains" Website
@@ -52,6 +68,8 @@ yarn create playwright
   - updated `.husky/_/pre-commit` to include the `package.json` script for linting
 - updated the automatically created `.github/workflows/playwright.yml` file to use yarn and corepack (prevents having to install yarn) (https://github.com/nodejs/corepack)
 - set up the husky `pre-push` to run the playwright tests tagged as '@smoke'
+
+7. Add badges to the repository's readme using shields.io and simpleicons (https://shields.io/docs/logos#simpleicons)
 
 ### Scratch Notes
 
