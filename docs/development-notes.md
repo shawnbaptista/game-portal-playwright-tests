@@ -38,6 +38,7 @@ yarn create playwright
   - updated `.husky/_/pre-commit` to include the `package.json` script for linting
 - updated the automatically created `.github/workflows/playwright.yml` file to use yarn and corepack (prevents having to install yarn) (https://github.com/nodejs/corepack)
 - set up the husky `pre-push` to run the playwright tests tagged as '@smoke'
+- ensure `.husky` is the `core.hooksPath` via `git config core.hooksPath`, if not run `git config core.hooksPath .husky`
 
 7. Add badges to the repository's readme using shields.io and simpleicons (https://shields.io/docs/logos#simpleicons)
 
