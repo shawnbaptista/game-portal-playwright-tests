@@ -11,7 +11,7 @@ export class HomePage {
     await this.page.goto("/");
   }
 
-  navigationLinks() {
+  get navigationLinks() {
     return this.navigation.getByRole("link");
   }
 

@@ -1,4 +1,5 @@
 import { Page, Locator, expect } from "@playwright/test";
+import { GamePage } from "../GamePage";
 
 export type Player = "user" | "computer"; // Alternatively could be 'red' vs. 'black' as per wiki doc
 
@@ -42,15 +43,37 @@ export class Coordinates {
   }
 }
 
-export class CheckersPage {
+export class CheckersPage extends GamePage {
   readonly board: CheckersBoard;
+  readonly url: string = "https://www.gamesforthebrain.com/game/checkers/";
 
-  constructor(private readonly page: Page) {
+  constructor(page: Page) {
+    super(page);
     this.board = new CheckersBoard(page);
   }
 
   async goto() {
     await this.page.goto("game/checkers/");
+  }
+
+  get rulesLink() {
+    return this.page.getByRole("link", { name: "Rules" });
+  }
+
+  get restartLink() {
+    return this.page.getByRole("link", { name: "Restart..." });
+  }
+
+  get messageText() {
+    return this.page.locator("#message").textContent();
+  }
+
+  async clickOnRulesLink() {
+    return await this.rulesLink.click();
+  }
+
+  async clickOnRestartLink() {
+    return await this.restartLink.click();
   }
 }
 

@@ -10,7 +10,7 @@ test.describe("Home page navigation", { tag: "@smoke" }, () => {
   });
 
   test("Home displays game links", async () => {
-    const count = await homePage.navigationLinks().count();
+    const count = await homePage.navigationLinks.count();
     expect(count).toBeGreaterThan(10);
   });
 

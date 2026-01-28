@@ -51,28 +51,24 @@ test.describe("Checkers gameplay", () => {
         piece: { type: "man", player: "user" },
         selected: true,
       });
-
-      // DEBUG
-      const boardState = await checkersPage.board.getBoardState();
-      checkersPage.board.getBoardSummary(boardState);
     },
   );
 
   test("Player cannot move backwards", () => {});
 
   test("Player cannot move horizontally", () => {});
-  
-  //   test("DEV - Automated game", { tag: "@dev" }, async () => {
-  //     let pieceCount: number = 24;
-  //     for (let index = 0; index < 20; index++) {
-  //       const boardState = await checkersPage.board.getBoardState();
-  //       const boardSummary = checkersPage.board.getBoardSummary(boardState);
-  //       if (boardSummary.playerPieceCount < pieceCount) {
-  //         console.log("Piece was captured!");
-  //         pieceCount = boardSummary.playerPieceCount;
-  //       }
-  //       await checkersPage.board.makeLegalMove(boardState);
-  //       await checkersPage.board.waitForComputerMove();
-  //     }
-  //   });
+
+  test.skip("DEV - Automated game", { tag: "@discussion" }, async () => {
+    let pieceCount: number = 24;
+    for (let index = 0; index < 20; index++) {
+      const boardState = await checkersPage.board.getBoardState();
+      const boardSummary = checkersPage.board.getBoardSummary(boardState);
+      if (boardSummary.playerPieceCount < pieceCount) {
+        console.log("Piece was captured!");
+        pieceCount = boardSummary.playerPieceCount;
+      }
+      await checkersPage.board.makeLegalMove(boardState);
+      await checkersPage.board.waitForComputerMove();
+    }
+  });
 });
