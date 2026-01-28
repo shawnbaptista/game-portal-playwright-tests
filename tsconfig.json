@@ -3,7 +3,7 @@
     "module": "commonjs",
     "noImplicitAny": true,
     "noEmit": true,
-    "strict": true,
+    "strict": true
   },
   "include": ["**/*.ts"]
 }

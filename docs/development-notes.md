@@ -43,9 +43,10 @@ yarn create playwright
 7. Add badges to the repository's readme using shields.io and simpleicons (https://shields.io/docs/logos#simpleicons)
 
 8. Add `tsconfig.json` to enable type checking via the TypeScript Compiler (https://www.typescriptlang.org/docs/handbook/compiler-options.html)(https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
-  - `yarn run tsc --noEmit` -- script added to `package.json` (NoEmit to prevent js file creation on run) (https://www.typescriptlang.org/tsconfig/#noEmit)
-  - Added to husky pre-commit
-  - Removed playwright smoketests from the pre-push
+
+- `yarn run tsc --noEmit` -- script added to `package.json` (NoEmit to prevent js file creation on run) (https://www.typescriptlang.org/tsconfig/#noEmit)
+- Added to husky pre-commit
+- Removed playwright smoketests from the pre-push
 
 #### Playwright observations:
 
