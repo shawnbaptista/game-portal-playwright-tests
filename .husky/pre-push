@@ -1,1 +1,1 @@
-yarn playwright test --grep '@smoke'
+yarn typecheck

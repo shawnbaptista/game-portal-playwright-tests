@@ -17,6 +17,7 @@
     "format:write": "prettier . --write",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
     "prepare": "husky"
   }
 }
