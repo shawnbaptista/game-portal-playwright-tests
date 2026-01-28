@@ -12,15 +12,13 @@ Empty Square: src="https://www.gamesforthebrain.com/game/checkers/gray.gif"
 Invalid Square / Black: src="black.gif"
 Selected User piece: "you2.gif"
 
-
 - Found that the game is loaded via `game/checkers/default.js` -- found in Dev Tools `Source` -> `Page`
   - Source code says "red" is the player, yet the UI shows "orange" -- also in the messages
   - Source code says "black" is the computer, yet the UI shows "black" as the actual black squares that cannot be touched/landed on
-   - With the images (.gif files), they are labelled as "you_", "me\*", or "black.gif" -- set the variables in the test repo as "player" vs. "computer" especially when the source code commented vars say:
-   - var black = -1; // computer is black
-    - var red = 1; // visitor is red
-    - Global variables used in the `default.js` game logic -- risk as they can be overridden  
-    
+  - With the images (.gif files), they are labelled as "you\_", "me\*", or "black.gif" -- set the variables in the test repo as "player" vs. "computer" especially when the source code commented vars say:
+  - var black = -1; // computer is black
+  - var red = 1; // visitor is red
+  - Global variables used in the `default.js` game logic -- risk as they can be overridden
 
 ￼
 Invariants
@@ -55,6 +53,7 @@ Each valid square has an "onclick" attribute; e.g. onclick="didclick(2, 4)"
 Game is loaded via `game/checkers/default.js` -- found in Dev Tools `Source` -> `Page`
 
 `default.js::computer()`
+
 ```
 {
     // step one - prevent any jumps

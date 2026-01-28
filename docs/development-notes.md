@@ -41,8 +41,6 @@ yarn create playwright
 
 7. Add badges to the repository's readme using shields.io and simpleicons (https://shields.io/docs/logos#simpleicons)
 
-
-
 #### Playwright observations:
 
 - Assertion toHaveURL can use regular expressions; e.g., `await expect(page).toHaveURL(/docs?\//);`: https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-url

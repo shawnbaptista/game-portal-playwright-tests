@@ -28,4 +28,3 @@ src/
     app/  -- pages, components, and tests for the games website, not for specific games themselves
     games/ -- games and their associated pages, components, and tests
 ```
-
