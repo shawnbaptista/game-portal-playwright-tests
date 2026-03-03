@@ -49,28 +49,31 @@ git config core.hooksPath .husky
 
 The following scripts are available in `package.json`:
 
-| Script | Description |
-| :----- | :---------- |
-| `yarn prepare` | Sets up Husky |
-| `yarn run format` | Check formatting with Prettier |
-| `yarn run format:write` | Auto-fix formatting with Prettier |
-| `yarn run lint` | Run ESLint |
-| `yarn run tsc --noEmit` | Run TypeScript type checker (no file output) |
-| `yarn playwright test --grep @smoke` | Run smoke tests |
+| Script                               | Description                                  |
+| :----------------------------------- | :------------------------------------------- |
+| `yarn prepare`                       | Sets up Husky                                |
+| `yarn run format`                    | Check formatting with Prettier               |
+| `yarn run format:write`              | Auto-fix formatting with Prettier            |
+| `yarn run lint`                      | Run ESLint                                   |
+| `yarn run tsc --noEmit`              | Run TypeScript type checker (no file output) |
+| `yarn playwright test --grep @smoke` | Run smoke tests                              |
 
 ---
 
 ## Tool Configuration Notes
 
 ### Prettier
+
 - Configured for code formatting on pre-commit
 - See [install docs](https://prettier.io/docs/install)
 
 ### Husky
+
 - Manages pre-commit and pre-push hooks via `.husky/`
 - See [how-to docs](https://typicode.github.io/husky/how-to.html)
 
 ### ESLint
+
 - Uses `@eslint/js` with recommended rules
 - Config in `eslint.config.js`
 - `.yarn` and other non-source files are excluded from linting
@@ -78,14 +81,17 @@ The following scripts are available in `package.json`:
 - See [configuration docs](https://eslint.org/docs/latest/use/configure/)
 
 ### TypeScript
+
 - `tsconfig.json` enables type checking via the TypeScript Compiler
 - `--noEmit` flag prevents JS file creation on typecheck runs
 - See [tsconfig docs](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 
 ### GitHub Actions
+
 - `.github/workflows/playwright.yml` uses Yarn via [Corepack](https://github.com/nodejs/corepack) to avoid a separate Yarn install step
 
 ### Shields / Badges
+
 - Badges generated via [shields.io](https://shields.io/) using [Simple Icons](https://shields.io/docs/logos#simpleicons)
 
 ---
@@ -93,15 +99,19 @@ The following scripts are available in `package.json`:
 ## Playwright Notes
 
 - `toHaveURL` supports regular expressions:
+
   ```ts
   await expect(page).toHaveURL(/docs?\//);
   ```
+
   See [docs](https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-url)
 
 - For object comparisons, prefer `toMatchObject` over `toStrictEqual` when matching a subset of object properties:
+
   ```ts
   expect(result).toMatchObject({ x: 0, y: 2 });
   ```
+
   See [docs](https://playwright.dev/docs/api/class-genericassertions#generic-assertions-to-match-object)
 
 - Tagging and running tagged tests:
