@@ -74,7 +74,7 @@
 | P2       | Low      | Board specifics      |    1.3    | Pieces start on white                                                                 |    No    |
 | P2       | Low      | Board specifics      |    1.4    | Red moves first                                                                       |    No    |
 | P1       | High     | Gameplay - end state |   2.3.3   | Game does not end when legal moves are unavailable                                    |    No    |
-| P1       | Medium   | Navigation           |    3.3    | Link for Rules is out-of-date                                                         |    No    |
+| P1       | Medium   | Navigation           |    3.3    | Link for Rules is out-of-date                                                         |    Yes    |
 | P3       | Low      | Security             |    4.1    | Game logic can be viewed via DevTools, unminified JS                                  |    No    |
 | P3       | Low      | Security             |    4.2    | Game state can potentially be modified via DevTools as global variables are available |    No    |
 | P1       | High     | Messages             |    5.1    | 'Please wait' can appear during the user's turn                                       |    No    |
@@ -86,7 +86,7 @@
 
 - DEFECT 2.3.3: Locked -- "In almost all variants, a player with no valid move remaining loses. This occurs if the player has no pieces left, or if all the player's pieces are obstructed from moving by opponent pieces" -- game SHOULD end here, but does not
 
-- DEFECT 3.3: "Rules" link goes to invalid page, redirects to a link that doesn't exist anymore -- also, shouldn't the link open in another tab instead of directing AWAY from the game page? The user would not know how to get to the game intuitively, other than clicking the back button -- also, what if they are checking the rules mid-game, they'll lose their progress (Ah! They do not lose their progress... maybe local storage?). With the broken redirect, the user is dropped onto the top of the page, and has to figure out _which_ rules to follow -- not specified which variant of checkers is being played
+- RESOLVED - DEFECT 3.3: "Rules" link goes to invalid page, redirects to a link that doesn't exist anymore -- also, shouldn't the link open in another tab instead of directing AWAY from the game page? The user would not know how to get to the game intuitively, other than clicking the back button -- also, what if they are checking the rules mid-game, they'll lose their progress (Ah! They do not lose their progress... maybe local storage?). With the broken redirect, the user is dropped onto the top of the page, and has to figure out _which_ rules to follow -- not specified which variant of checkers is being played
 
 - DEFECTS 4.1 & 4.2: The game is loaded via `game/checkers/default.js` -- found in Dev Tools `Source` -> `Page`
 
