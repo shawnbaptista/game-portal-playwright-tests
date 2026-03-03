@@ -91,17 +91,17 @@ src/
 
 Page Object Models (POMs) are colocated with their domain rather than in a separate `pages/` folder, keeping the model and its tests together as a unit. `GamePage.ts` serves as a base for all games, with game-specific pages like `CheckersPage.ts` extending it for game-specific interactions.
 
-`CheckersPage.ts` contains two classes: `CheckersPage` for page-level interactions 
-(navigation, messaging, UI indicators) and `CheckersBoard` for board-level interactions 
-(piece selection, move mechanics, board state). Separating these concerns keeps each 
+`CheckersPage.ts` contains two classes: `CheckersPage` for page-level interactions
+(navigation, messaging, UI indicators) and `CheckersBoard` for board-level interactions
+(piece selection, move mechanics, board state). Separating these concerns keeps each
 class focused and makes tests easier to read and maintain.
 
 Tests are split by concern — `checkers-gameplay.spec.ts` covers board rules and move mechanics, while `checkers-navigation.spec.ts` covers navigation and UI — keeping test files focused and failures easy to locate.
 
-
 ---
 
 ### Getting Started
+
 ```bash
 # Install dependencies
 yarn install
@@ -148,6 +148,5 @@ See `docs/developer-notes.md` for full setup details including VSCode configurat
    - GitHub Workflow - Playwright -- `.github/workflows/playwright.yml`
      - playwright tests run
      - test report uploaded as a downloadable artifact, retained for 30 days (accessible via the GitHub Actions run summary)
-
 
 ---
