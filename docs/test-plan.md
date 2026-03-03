@@ -74,7 +74,7 @@
 | P2       | Low      | Board specifics      |    1.3    | Pieces start on white                                                                 |    No    |
 | P2       | Low      | Board specifics      |    1.4    | Red moves first                                                                       |    No    |
 | P1       | High     | Gameplay - end state |   2.3.3   | Game does not end when legal moves are unavailable                                    |    No    |
-| P1       | Medium   | Navigation           |    3.3    | Link for Rules is out-of-date                                                         |    Yes    |
+| P1       | Medium   | Navigation           |    3.3    | Link for Rules is out-of-date                                                         |   Yes    |
 | P3       | Low      | Security             |    4.1    | Game logic can be viewed via DevTools, unminified JS                                  |    No    |
 | P3       | Low      | Security             |    4.2    | Game state can potentially be modified via DevTools as global variables are available |    No    |
 | P1       | High     | Messages             |    5.1    | 'Please wait' can appear during the user's turn                                       |    No    |
