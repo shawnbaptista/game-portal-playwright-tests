@@ -116,7 +116,7 @@ See `docs/developer-notes.md` for full setup details including VSCode configurat
 | Script                               | Description          |
 | :----------------------------------- | :------------------- |
 | `yarn test`                          | Run all tests        |
-| `yarn playwright test --grep @smoke` | Run smoke tests only |
+| `yarn test --grep @smoke`            | Run smoke tests only |
 
 ---
 
