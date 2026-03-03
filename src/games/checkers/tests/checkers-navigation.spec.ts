@@ -41,7 +41,7 @@ test.describe("Checkers landing page functionality", () => {
     await expect(checkersPage.rulesLink).toBeVisible();
     await checkersPage.clickOnRulesLink();
 
-    await expect(page).toHaveURL(/wikipedia\.org\/wiki\/Checkers/);
+    await expect(page).toHaveURL(/wikipedia\.org\/wiki\/English_draughts/);
   });
 
   /**

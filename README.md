@@ -113,10 +113,10 @@ See `docs/developer-notes.md` for full setup details including VSCode configurat
 
 ### Running Tests
 
-| Script                               | Description          |
-| :----------------------------------- | :------------------- |
-| `yarn test`                          | Run all tests        |
-| `yarn test --grep @smoke`            | Run smoke tests only |
+| Script                    | Description          |
+| :------------------------ | :------------------- |
+| `yarn test`               | Run all tests        |
+| `yarn test --grep @smoke` | Run smoke tests only |
 
 ---
 
