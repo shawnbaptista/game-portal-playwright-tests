@@ -1,55 +1,111 @@
-### Developers notes on setting up the repository from scratch
+# Developer Notes
 
-1. Installed Playwright (https://playwright.dev/docs/intro#installing-playwright)
+## Setup
 
-```
+### 1. Install Playwright
+
+```bash
 yarn create playwright
 ```
 
-2. Modified `playwright.config.ts::defineConfig`
+See [official docs](https://playwright.dev/docs/intro#installing-playwright) for details.
 
-- Tests are to be placed in `./src`, otherwise playwright cannot discover them for running, as set via the `testDir` property.
+### 2. Configure Playwright
 
-3. VSCode did not recognize playwright imports, fix as per yarnpkg.com recommendation (https://yarnpkg.com/getting-started/editor-sdks)
+In `playwright.config.ts`, set `testDir` to `./src` so Playwright can discover tests:
 
-- https://yarnpkg.com/getting-started/editor-sdks
+```ts
+defineConfig({
+  testDir: './src',
+  ...
+})
+```
 
-4. Install `Playwright Test for VSCode` as per official docs (https://playwright.dev/docs/running-tests#run-tests-in-vs-code)
+### 3. Fix VSCode Playwright Import Recognition
 
-5. Tagging and running tagged tests (https://playwright.dev/docs/test-annotations#tag-tests)
+Follow the [Yarn editor SDK setup](https://yarnpkg.com/getting-started/editor-sdks) to resolve unrecognized imports in VSCode.
 
-- e.g., '@smoke'; run via `yarn playwright test --grep @smoke`
+### 4. Install the Playwright VSCode Extension
 
-6. Add quality guardrails:
+Install `Playwright Test for VSCode` as per the [official docs](https://playwright.dev/docs/running-tests#run-tests-in-vs-code).
 
-- prettier for code formatting: https://prettier.io/docs/install
-  - `yarn exec prettier . --write` -- format all files (add this to pre-commit... should add this as a script (DONE!))
-    - `yarn run format` -- script added to `package.json`
-    - `yarn run format:write` -- script added to `package.json`
-- husky as git hook manager: https://typicode.github.io/husky/how-to.html
-  - `yarn prepare` -- script added to `package.json` for setting up husky
-  - updated `.husky/_/pre-commit` to run scripts found in `package.json` automatically on commit
-- eslint as linter: https://eslint.org/docs/latest/use/core-concepts/
-  - added `@eslint/js` as recommended by eslint (https://eslint.org/docs/latest/rules/)
-  - added `eslint.config.js` as per configuration steps (https://eslint.org/docs/latest/use/configure/)
-    - `.yarn` files and others that shouldn't be linted were being checked -- added them to an ignore list
-    - linter blew up on .ts files, adding in `typescript-eslint` as fix
-  - added `typescript typescript-eslint` as per (https://typescript-eslint.io/getting-started)
-  - updated `.husky/_/pre-commit` to include the `package.json` script for linting
-- updated the automatically created `.github/workflows/playwright.yml` file to use yarn and corepack (prevents having to install yarn) (https://github.com/nodejs/corepack)
-- set up the husky `pre-push` to run the playwright tests tagged as '@smoke'
-- ensure `.husky` is the `core.hooksPath` via `git config core.hooksPath`, if not run `git config core.hooksPath .husky`
+### 5. Verify Husky Hook Path
 
-7. Add badges to the repository's readme using shields.io and simpleicons (https://shields.io/docs/logos#simpleicons)
+Ensure `.husky` is set as the `core.hooksPath`:
 
-8. Add `tsconfig.json` to enable type checking via the TypeScript Compiler (https://www.typescriptlang.org/docs/handbook/compiler-options.html)(https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
+```bash
+git config core.hooksPath
+```
 
-- `yarn run tsc --noEmit` -- script added to `package.json` (NoEmit to prevent js file creation on run) (https://www.typescriptlang.org/tsconfig/#noEmit)
-- Added to husky pre-commit
-- Removed playwright smoketests from the pre-push
+If not set, run:
 
-#### Playwright observations:
+```bash
+git config core.hooksPath .husky
+```
 
-- Assertion toHaveURL can use regular expressions; e.g., `await expect(page).toHaveURL(/docs?\//);`: https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-url
+---
 
-- Assertion toStrictEqual does not seem to behave well with objects (specfically the Coordinates class instantiated), this appears to be the solution based on documentation -- "subset of object properties": https://playwright.dev/docs/api/class-genericassertions#generic-assertions-to-match-object
+## Scripts
+
+The following scripts are available in `package.json`:
+
+| Script | Description |
+| :----- | :---------- |
+| `yarn prepare` | Sets up Husky |
+| `yarn run format` | Check formatting with Prettier |
+| `yarn run format:write` | Auto-fix formatting with Prettier |
+| `yarn run lint` | Run ESLint |
+| `yarn run tsc --noEmit` | Run TypeScript type checker (no file output) |
+| `yarn playwright test --grep @smoke` | Run smoke tests |
+
+---
+
+## Tool Configuration Notes
+
+### Prettier
+- Configured for code formatting on pre-commit
+- See [install docs](https://prettier.io/docs/install)
+
+### Husky
+- Manages pre-commit and pre-push hooks via `.husky/`
+- See [how-to docs](https://typicode.github.io/husky/how-to.html)
+
+### ESLint
+- Uses `@eslint/js` with recommended rules
+- Config in `eslint.config.js`
+- `.yarn` and other non-source files are excluded from linting
+- Uses `typescript-eslint` for `.ts` file support
+- See [configuration docs](https://eslint.org/docs/latest/use/configure/)
+
+### TypeScript
+- `tsconfig.json` enables type checking via the TypeScript Compiler
+- `--noEmit` flag prevents JS file creation on typecheck runs
+- See [tsconfig docs](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
+
+### GitHub Actions
+- `.github/workflows/playwright.yml` uses Yarn via [Corepack](https://github.com/nodejs/corepack) to avoid a separate Yarn install step
+
+### Shields / Badges
+- Badges generated via [shields.io](https://shields.io/) using [Simple Icons](https://shields.io/docs/logos#simpleicons)
+
+---
+
+## Playwright Notes
+
+- `toHaveURL` supports regular expressions:
+  ```ts
+  await expect(page).toHaveURL(/docs?\//);
+  ```
+  See [docs](https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-url)
+
+- For object comparisons, prefer `toMatchObject` over `toStrictEqual` when matching a subset of object properties:
+  ```ts
+  expect(result).toMatchObject({ x: 0, y: 2 });
+  ```
+  See [docs](https://playwright.dev/docs/api/class-genericassertions#generic-assertions-to-match-object)
+
+- Tagging and running tagged tests:
+  ```bash
+  yarn playwright test --grep @smoke
+  ```
+  See [test annotations docs](https://playwright.dev/docs/test-annotations#tag-tests)
