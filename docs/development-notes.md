@@ -145,6 +145,6 @@ The following scripts are available in `package.json`:
 
 ## Troubleshooting
 
-* Error: `Required package missing from disk...` 
-  * Cause: Local packages are out of sync with `yarn.lock`
-  * Fix: `yarn install`
+- Error: `Required package missing from disk...`
+  - Cause: Local packages are out of sync with `yarn.lock`
+  - Fix: `yarn install`
