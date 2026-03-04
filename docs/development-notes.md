@@ -119,3 +119,26 @@ The following scripts are available in `package.json`:
   yarn playwright test --grep @smoke
   ```
   See [test annotations docs](https://playwright.dev/docs/test-annotations#tag-tests)
+
+## Running in a Container Locally
+
+- From project root directory, with Docker Desktop running, start up a new container with the project's files in `app/`:
+
+```bash
+  docker run -it --rm -v $(pwd):/app -w /app node:20 bash
+```
+
+- Once inside the container, run the setup script:
+
+```bash
+  bash /app/scripts/ci-setup.sh
+```
+
+- Or manually:
+
+```bash
+  corepack enable
+  corepack prepare yarn@4.10.3 --activate
+  yarn install --immutable
+  yarn playwright install --with-deps
+```

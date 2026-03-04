@@ -102,9 +102,29 @@ Tests are split by concern — `checkers-gameplay.spec.ts` covers board rules an
 
 ### Getting Started
 
+#### Prerequisites
+
+- Node.js 20+
+- Docker (optional, for a clean environment)
+
+#### Install dependencies
+
+- Run the setup script:
+  ```bash
+  ./scripts/ci-setup.sh
+  ```
+- Or manually:
+  ```bash
+  corepack enable
+  corepack prepare yarn@4.10.3 --activate
+  yarn install --immutable
+  yarn playwright install --with-deps
+  ```
+
+#### Running in Docker
+
 ```bash
-# Install dependencies
-yarn install
+docker run -it --rm -v $(pwd):/app -w /app node:20 bash -c "bash /app/scripts/ci-setup.sh && bash"
 ```
 
 See `docs/developer-notes.md` for full setup details including VSCode configuration and Husky hook setup.
