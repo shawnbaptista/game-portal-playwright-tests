@@ -99,7 +99,7 @@ Tests are split by concern — `checkers-gameplay.spec.ts` covers board rules an
 
 - Run the setup script:
   ```bash
-  ./scripts/ci-setup.sh
+  bash ./scripts/ci-setup.sh
   ```
 - Or manually:
   ```bash
