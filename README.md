@@ -31,31 +31,23 @@ A Playwright test suite covering various games on the "Games for Brains" website
 - [Running Tests](#running-tests)
 - [Quality Guardrails and CI](#quality-guardrails-and-ci)
 
----
-
-### Test Strategy
+## Test Strategy
 
 Tests cover Checkers across five areas: board rules, gameplay mechanics
 (legal and invalid moves, end states), navigation, UI indicators, and messaging.
 See `docs/test-plan.md` for the full test plan including invariants and defect log.
 
----
-
-### Defects Found
+## Defects Found
 
 8 defects identified and documented with priority and severity ratings.
 See `docs/test-plan.md` for the full defect log.
 
----
-
-### Testability Recommendations
+## Testability Recommendations
 
 Suggestions for `data-*` attributes and state injection to improve test reliability
 and reduce selector brittleness. See `docs/test-plan.md`.
 
----
-
-### Project Structure
+## Project Structure
 
 ```
 docs/ -- markdown files containing notes on testing the website, test plan, and potential defects
@@ -66,11 +58,9 @@ src/
 
 See `docs/` for the test plan, defect log, and testing notes.
 
----
+## Source Structure and Design
 
-### Source Structure and Design
-
-#### Page Object Models and Tests
+### Page Object Models and Tests
 
 Tests are organized by domain — `app/` for the site itself, `games/` for individual games — mirroring the structure of the application under test.
 
@@ -98,31 +88,45 @@ class focused and makes tests easier to read and maintain.
 
 Tests are split by concern — `checkers-gameplay.spec.ts` covers board rules and move mechanics, while `checkers-navigation.spec.ts` covers navigation and UI — keeping test files focused and failures easy to locate.
 
----
+## Getting Started
 
-### Getting Started
+### Prerequisites
+
+- Node.js 20+
+- Docker (optional, for a clean environment)
+
+### Install dependencies
+
+- Run the setup script:
+  ```bash
+  ./scripts/ci-setup.sh
+  ```
+- Or manually:
+  ```bash
+  corepack enable
+  corepack prepare yarn@4.10.3 --activate
+  yarn install --immutable
+  yarn playwright install --with-deps
+  ```
+
+### Running in Docker
 
 ```bash
-# Install dependencies
-yarn install
+docker run -it --rm -v $(pwd):/app -w /app node:20 bash -c "bash /app/scripts/ci-setup.sh && bash"
 ```
 
-See `docs/developer-notes.md` for full setup details including VSCode configuration and Husky hook setup.
+See `docs/developer-notes.md` for troubleshooting and full setup details including VSCode configuration and Husky hook setup.
 
----
-
-### Running Tests
+## Running Tests
 
 | Script                    | Description          |
 | :------------------------ | :------------------- |
 | `yarn test`               | Run all tests        |
 | `yarn test --grep @smoke` | Run smoke tests only |
 
----
+## Quality Guardrails and CI
 
-### Quality Guardrails and CI
-
-#### Tools
+### Tools
 
 - [prettier](https://prettier.io/docs/install) for code formatting
 - [husky](https://typicode.github.io/husky/how-to.html) as git hook manager
@@ -130,7 +134,7 @@ See `docs/developer-notes.md` for full setup details including VSCode configurat
   - pre-push
 - [eslint](https://eslint.org/docs/latest/use/core-concepts/) as linter
 
-#### Flow
+### Flow
 
 1. pre-commit
    - husky pre-commit hook -- `.husky/pre-commit`
@@ -148,5 +152,3 @@ See `docs/developer-notes.md` for full setup details including VSCode configurat
    - GitHub Workflow - Playwright -- `.github/workflows/playwright.yml`
      - playwright tests run
      - test report uploaded as a downloadable artifact, retained for 30 days (accessible via the GitHub Actions run summary)
-
----
